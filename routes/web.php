@@ -20,4 +20,9 @@ Auth::routes();
 Route::get('auth/confirmation/{token}', 'Auth\RegisterController@getConfirmation')
         ->name('confirmation');
 
+Route::get('auth/fb', 'Auth\SocialAuthController@redirectToProvider')
+               ->name('auth.fb');
+
+Route::get('auth/fb/callback', 'Auth\SocialAuthController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index');
