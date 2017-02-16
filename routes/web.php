@@ -17,4 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('auth/confirmation/{token}', 'Auth\RegisterController@getConfirmation')
+        ->name('confirmation');
+
 Route::get('/home', 'HomeController@index');

@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
+use App\Notifications\ConfirmUserRegistration;
 
 class RegisterController extends Controller
 {
@@ -62,10 +66,43 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user = new User([
+              'name' => $data['name'],
+              'email' => $data['email'],
+              'password' => bcrypt($data['password']),
+          ]);
+
+        $user->registration_token = str_random(20);
+        $user->save();
+
+        $user->notify(new ConfirmUserRegistration($user));
+
+        return $user;
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return redirect()->route('login')
+            ->with('alert', 'Por favor confirma tu email');
+    }
+
+    protected function getConfirmation($token)
+    {
+        $user = User::where('registration_token', $token)->firstOrFail();
+        $user->registration_token = null;
+        $user->save();
+
+        return redirect()->route('login')
+            ->with('alert', 'Email confirmado, ahora puedes iniciar sesiòn!');
     }
 }
