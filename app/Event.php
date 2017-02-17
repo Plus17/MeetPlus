@@ -14,4 +14,14 @@ class Event extends Model
     protected $fillable = [
         'name', 'start', 'end', 'place', 'longitude', 'latitude', 'description', 'status',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }
