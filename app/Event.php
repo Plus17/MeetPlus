@@ -4,15 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+
 class Event extends Model
 {
+    use Sluggable;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'start', 'end', 'place', 'longitude', 'latitude', 'description', 'status',
+        'slug', 'name', 'start', 'end', 'place', 'longitude', 'latitude', 'description', 'status',
     ];
 
     public function category()
@@ -22,6 +26,20 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
 }
