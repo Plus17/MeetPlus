@@ -26,7 +26,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->randomElement(['Congreso', 'MeetUp', 'Somposio', 'Flisol']),
+        'name' => $faker->unique()->randomElement(['Congreso', 'MeetUp', 'Simposio', 'Flisol']),
     ];
 });
 
