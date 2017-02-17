@@ -32,13 +32,13 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Event::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->text($maxNbChars = 200),
+        'name' => $faker->text($maxNbChars = 50),
         'start' => \Carbon\Carbon::now(),
         'end' => \Carbon\Carbon::now(),
         'place' => $faker->state,
         'longitude' => $faker->latitude($min = -90, $max = 90),
         'latitude' => $faker->longitude($min = -180, $max = 180),
-        'description' => $faker->paragraph,
+        'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'status' => $faker->randomElement(['active', 'finished', 'canceled']),
         'category_id' => random_int(\DB::table('categories')->min('id'), \DB::table('categories')->max('id')),
         'user_id' => random_int(\DB::table('users')->min('id'), \DB::table('users')->max('id')),
