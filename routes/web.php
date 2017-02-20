@@ -11,16 +11,19 @@
 |
 */
 
-Route::get('/', 'FrontEndController@index');
-
 Auth::routes();
 
 Route::get('auth/confirmation/{token}', 'Auth\RegisterController@getConfirmation')
         ->name('confirmation');
 
 Route::get('auth/fb', 'Auth\SocialAuthController@redirectToProvider')
-               ->name('auth.fb');
+        ->name('auth.fb');
 
 Route::get('auth/fb/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/', 'FrontEndController@index');
+
+Route::get('/event/{slug}', 'FrontEndController@showEvent')
+        ->name('event.show');

@@ -8,7 +8,7 @@
 
             <article class="post clearfix">
                 <a href="#" class="thumb pull-left">
-                    <img class="img-thumbnail" src="images/img1.jpg" alt="">
+                    <img class="img-thumbnail" src="{{ asset('images/img1.jpg') }}" alt="">
                 </a>
                 <h2 class="post-title">
                     <a href="#">{{ $event->name }}</a>
@@ -19,7 +19,7 @@
                 </p>
 
                 <div class="contenedor-botones">
-                    <a href="#" class="btn btn-primary">Leer Mas</a>
+                    <a href="{{ route('event.show', $event->slug) }}" class="btn btn-primary">Leer Mas</a>
                     <a href="#" class="btn btn-success">Comentarios <span class="badge">20</span></a>
                 </div>
             </article>
@@ -28,4 +28,10 @@
 
     @endif
 
+@endsection
+
+@section('paginator')
+    <div class="center-block">
+        {{ $events->links() }}
+    </div>
 @endsection
