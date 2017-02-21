@@ -25,5 +25,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/', 'FrontEndController@index');
 
-Route::get('/event/{slug}', 'FrontEndController@showEvent')
+Route::get('/evento/{slug}', 'FrontEndController@showEvent')
         ->name('event.show');
+
+Route::get('/categoria/{slug}', 'FrontEndController@showByCategory')
+        ->name('event.category.show');

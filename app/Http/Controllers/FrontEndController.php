@@ -31,4 +31,12 @@ class FrontEndController extends Controller
 
         return view('Event.show', compact('event'));
     }
+
+    public function showByCategory($slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $events = $category->events()->paginate(5);
+
+        return view('Event.by_category', compact('events'));
+    }
 }
