@@ -43,7 +43,7 @@
 							<ul class="dropdown-menu" role="menu">
 								@if (isset($categories))
 									@foreach ($categories as $category)
-										<li><a href="#">{{ $category->name }}</a></li>
+										<li><a href="{{ route('event.category.show', $category->slug) }}">{{ $category->name }}</a></li>
 
 									@endforeach
 								@endif
@@ -116,7 +116,7 @@
 					<a href="#" class="list-group-item active">Categorias</a>
 					@if (isset($categories))
 						@foreach ($categories as $category)
-							<a href="#" class="list-group-item">{{ $category->name }}</a>
+							<a href="{{ route('event.category.show', $category->slug) }}" class="list-group-item">{{ $category->name }}</a>
 						@endforeach
 					@endif
 				</div>
