@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+        $uuid4 = Ramsey\Uuid\Uuid::uuid4();
 
         DB::table('users')->insert([
+            'uuid' => $uuid4->toString(),
             'name' => 'Plus',
             'email' => 'admin@email.com',
             'role' => 'admin',

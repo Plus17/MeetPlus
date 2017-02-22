@@ -14,8 +14,10 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
+    $uuid4 = Ramsey\Uuid\Uuid::uuid4();
 
     return [
+        'uuid' => $uuid4->toString(),
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'registration_token' => null,
