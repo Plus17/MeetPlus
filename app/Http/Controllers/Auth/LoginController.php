@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user/profile';
 
     /**
      * Create a new controller instance.
@@ -45,5 +45,14 @@ class LoginController extends Controller
             'password' => $request->get('password'),
             'registration_token' => null
          ];
+     }
+
+     public function redirectPath()
+     {
+         if (auth()->user()->role == 'admin') {
+             return '/admin';
+         }
+
+         return '/user/profile';
      }
 }
