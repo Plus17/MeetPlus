@@ -9,14 +9,14 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Event extends Model
 {
     use Sluggable;
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'slug', 'name', 'start', 'end', 'place', 'longitude', 'latitude', 'description', 'status',
+        'slug', 'name', 'start', 'end', 'place', 'longitude', 'latitude', 'description', 'status', 'category_id', 'user_id',
     ];
 
     public function category()

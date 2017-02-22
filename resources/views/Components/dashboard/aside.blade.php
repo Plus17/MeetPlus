@@ -4,10 +4,10 @@
             <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
         <li>
-            <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i>Profile</a>
+            <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i>Profile</a>
         </li>
         <li>
-            <a href="forms.html"><i class="fa fa-fw fa-edit"></i> My Events</a>
+            <a href="{{ route('events.index') }}"><i class="fa fa-fw fa-edit"></i> My Events</a>
         </li>
     </ul>
 </div>

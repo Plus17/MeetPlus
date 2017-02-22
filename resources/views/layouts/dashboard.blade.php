@@ -160,10 +160,11 @@
 
                 <div class="row">
                     @if(Session::has('message'))
-                        @component('components.dashboard.message')
+                        @component('Components.dashboard.message')
                              {{ Session::get('message') }}
                         @endcomponent
                     @endif
+                    @include('Components.dashboard.errors')
                 </div>
                 <!-- /.row -->
                 @yield('content')
