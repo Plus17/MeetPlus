@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return redirect()->route('profile.show', Auth::user()->id);
+        return redirect()->route('profile.show', Auth::user()->uuid);
     }
 
     /**
@@ -47,12 +47,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::where('uuid', $uuid)->firstOrFail();
 
         return view('User.show', compact('user'));
     }
