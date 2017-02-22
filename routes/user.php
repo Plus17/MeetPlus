@@ -1,3 +1,6 @@
 <?php
 
-Route::resource('/profile', 'UserController');
+
+Route::group(['middleware' => ['web', 'auth', 'role:user']] ,function(){
+    Route::resource('/profile', 'UserController');
+});

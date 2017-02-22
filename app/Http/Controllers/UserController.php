@@ -9,10 +9,6 @@ use App\user;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['web', 'auth', 'role:user']);
-    }
     /**
      * Display a listing of the resource.
      *
