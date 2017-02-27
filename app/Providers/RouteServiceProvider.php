@@ -41,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapUserRoutes();
 
+        $this->mapAdminRoutes();
+
         //
     }
 
@@ -85,5 +87,19 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('user')
              ->namespace($this->namespace)
              ->group(base_path('routes/user.php'));
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::prefix('admin')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/admin.php'));
     }
 }
