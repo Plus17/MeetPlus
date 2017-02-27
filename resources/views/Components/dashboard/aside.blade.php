@@ -28,9 +28,8 @@
 
         @if (Auth::check() && Auth::user()->role == 'admin')
         <li>
-            <a href="#"><i class="fa fa-fw fa-edit"></i> Users</a>
+            <a href="{{ route('admin.users.index') }}"><i class="fa fa-fw fa-edit"></i> Users</a>
         </li>
         @endif
-        
     </ul>
 </div>

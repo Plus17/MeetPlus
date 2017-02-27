@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <p>
+            <p>
             Esto son todos los eventos que haz registrado, puedes verlos en detalle, editarlos o
             siempre puedes crear uno nuevo:
             <a href="{{ route('events.create') }}" class="btn btn-info">Crear <span class="glyphicon glyphicon-new-window"></span></a>
