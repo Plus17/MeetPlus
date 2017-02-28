@@ -20,7 +20,7 @@ class FrontEndController extends Controller
 
     public function index()
     {
-        $events =  Event::with('user')->paginate(10);
+        $events =  Event::with('user')->where('status', 'active')->paginate(10);
 
         return view('welcome', compact('events', 'last'));
     }
