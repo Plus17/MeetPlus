@@ -40,7 +40,7 @@
         <div class="btn-group">
             {!! Form::reset("Reset", ['class' => 'btn btn-warning']) !!}
 
-            {!! Form::submit("Registrar", ['class' => 'btn btn-success']) !!}
+            {!! Form::submit("Enviar", ['class' => 'btn btn-success']) !!}
         </div>
 
 </div>

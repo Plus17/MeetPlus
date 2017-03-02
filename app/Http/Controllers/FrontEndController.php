@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 
 use App\Event;
 use App\Category;
+use App\EventComment;
 
 class FrontEndController extends Controller
 {
@@ -29,7 +30,9 @@ class FrontEndController extends Controller
     {
         $event = Event::where('slug', $slug)->with('user', 'category')->firstOrFail();
 
-        return view('Event.show', compact('event'));
+        $comments = EventComment::where('event_id', $event->id)->with('user')->get();
+
+        return view('Event.show', compact('event', 'comments'));
     }
 
     public function showByCategory($slug)

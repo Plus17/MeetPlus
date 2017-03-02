@@ -28,6 +28,11 @@ class Event extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\EventComment');
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *

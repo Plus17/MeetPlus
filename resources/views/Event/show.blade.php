@@ -21,3 +21,27 @@
     @endcomponent
 
 @endsection
+
+@section('comments')
+
+    @if (! $comments->isEmpty())
+        @foreach ($comments as $comment)
+            <div class="">
+                <p>Autor: {{ $comment->user->name }}</p>
+                <p>Comentario: </p>
+                <p>{{ $comment->comment }}</p>
+            </div>
+        @endforeach
+    @else
+        <p>No hay comentarios</p>
+    @endif
+
+@endsection
+
+@section('form.comments')
+
+    @if (Auth::check())
+        @include('Components.event.form_comments')
+    @endif
+
+@endsection

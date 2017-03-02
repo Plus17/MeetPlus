@@ -108,7 +108,12 @@
 				<nav>
 					@yield('paginator')
 				</nav>
+
+				@yield('comments')
+				@yield('form.comments')
 			</section>
+
+
 
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
