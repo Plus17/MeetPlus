@@ -59,7 +59,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::findOrFail($id)->first();
+        $event = Event::findOrFail($id);
         $categories = Category::pluck('name', 'id');
 
         return view('Event.edit', compact('event', 'categories'));
