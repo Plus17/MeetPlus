@@ -74,7 +74,7 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, $id)
     {
-        $event = Event::findOrFail($id)->first();
+        $event = Event::findOrFail($id);
         $event->fill($request->all());
 
         $request->session()->flash('message', 'Evento actualizado exitosamente!');
