@@ -7,7 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                @if(Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Oops!</strong> Hubo un error! <br><br>
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+
+                    <form class="form-horizontal" role="form" method="POST" id="register-form" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -62,8 +70,13 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
+                                <button
+                                    class="g-recaptcha btn btn-primary"
+                                    data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
+                                    data-callback="onSubmit"
+                                    data-size="invisible"
+                                    data-badge="bottomleft">
+                                Submit
                                 </button>
                             </div>
                         </div>
@@ -73,5 +86,12 @@
         </div>
     </div>
 </div>
+
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
+</script>
 
 @endsection
