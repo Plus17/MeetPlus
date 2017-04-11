@@ -172,6 +172,11 @@ return [
         Cviebrock\EloquentSluggable\ServiceProvider::class,
 
         /*
+         * Own Service Providers...
+         */
+        App\Providers\ValidatorServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,

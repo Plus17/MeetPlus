@@ -53,22 +53,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $client = new Client();
-        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => env('RECAPTCHA_SECRET_KEY'),
-            'response' => $data['g-recaptcha-response']
-        ]);
-
-        if ( $response->getStatusCode() !== 200 )
-        {
-            $request->session()->flash('error', 'Algo Fallo. Por favor intentelo nuevamente');
-            return false;
-        }
-
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'g-recaptcha-response' => 'recaptcha',
         ]);
     }
 
@@ -88,8 +77,7 @@ class RegisterController extends Controller
 
         $user->registration_token = str_random(20);
         $user->save();
-
-        //$user->notify(new ConfirmUserRegistration($user));
+        
         dispatch(new SendRegistrationEmail($user));
 
         return $user;
