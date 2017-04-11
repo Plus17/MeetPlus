@@ -9,9 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 
-use GuzzleHttp\Client;
+use App\Jobs\SendRegistrationEmail;
 
-use App\Notifications\ConfirmUserRegistration;
+use GuzzleHttp\Client;
 
 class RegisterController extends Controller
 {
@@ -89,7 +89,8 @@ class RegisterController extends Controller
         $user->registration_token = str_random(20);
         $user->save();
 
-        $user->notify(new ConfirmUserRegistration($user));
+        //$user->notify(new ConfirmUserRegistration($user));
+        dispatch(new SendRegistrationEmail($user));
 
         return $user;
     }
