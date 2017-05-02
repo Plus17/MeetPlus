@@ -38,7 +38,7 @@ class FrontEndController extends Controller
     public function showByCategory($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
-        $events = $category->events()->with('user')->paginate(5);
+        $events = $category->events()->with('user')->where('status', 'active')->paginate(5);
 
         return view('Event.by_category', compact('events'));
     }
