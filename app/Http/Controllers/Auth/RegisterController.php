@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Ramsey\Uuid\Uuid;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use App\Jobs\SendRegistrationEmail;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Registered;
-
-use App\Jobs\SendRegistrationEmail;
-
-use GuzzleHttp\Client;
 
 class RegisterController extends Controller
 {
@@ -69,12 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $uuid4 = Uuid::uuid4();
         $user = new User([
-              'name' => $data['name'],
-              'email' => $data['email'],
-              'password' => bcrypt($data['password']),
-          ]);
-
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+        $user->uuid = $uuid4->toString();
+        $user->remember_token = str_random(10);
         $user->registration_token = str_random(20);
         $user->save();
         
