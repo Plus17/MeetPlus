@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Requests\EventRequest;
-
 use App\Event;
 use App\Category;
+use Illuminate\Http\Request;
+use App\Traits\Events\Methods;
+use App\Http\Requests\EventRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class EventController extends Controller
 {
+    use Methods;
     /**
      * Display a listing of the resource.
      *
@@ -76,6 +76,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
         $event->fill($request->all());
+        $event->save();
 
         $request->session()->flash('message', 'Evento actualizado exitosamente!');
 

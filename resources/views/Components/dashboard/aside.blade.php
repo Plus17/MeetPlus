@@ -13,11 +13,7 @@
         </li>
 
         <li>
-        @if (Auth::user()->role == 'admin')
-            <a href="#"><i class="fa fa-fw fa-edit"></i> Events</a>
-        @else
             <a href="{{ route('events.index') }}"><i class="fa fa-fw fa-edit"></i> Events</a>
-        @endif
         </li>
 
         @if (Auth::check() && (Auth::user()->role == 'editor' or Auth::user()->role == 'admin'))
