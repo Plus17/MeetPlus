@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', $event->name.' - ')
+
 @section('content')
 
     @component('components/event_show')
