@@ -17,7 +17,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
                                         <td>{{ $user->events()->count() }}</td>
                                     </tr>
                                 </tbody>
