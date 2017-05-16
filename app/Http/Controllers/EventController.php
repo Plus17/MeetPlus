@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Traits\Events\Methods;
 use App\Http\Requests\EventRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class EventController extends Controller
@@ -60,6 +61,14 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::findOrFail($id);
+
+        if (Gate::denies('update', $event))
+        {
+            session()->flash('message', 'Sin autorización!');
+
+            return redirect()->route('events.index');
+        }
+
         $categories = Category::pluck('name', 'id');
 
         return view('Event.edit', compact('event', 'categories'));
