@@ -2,7 +2,7 @@
 <?php
 
 Route::group(['middleware' => ['web', 'auth', 'role:admin']] ,function(){
-	Auth::loginUsingId(1);
+	
     Route::get('/', 'AdminController@index')
             ->name('admin.index');
 
