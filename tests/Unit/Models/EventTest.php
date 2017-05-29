@@ -23,7 +23,7 @@ class EventTest extends TestCase
      *
      * @return void
      */
-    public function testEventsCanBeCreated()
+    public function test_user_can_create_event()
     {
         $user = factory(User::class)->create();
         $event = $user->events()->create([
