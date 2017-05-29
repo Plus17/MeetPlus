@@ -12,7 +12,7 @@ use App\Notifications\ConfirmUserRegistration;
 
 class SendRegistrationEmail implements ShouldQueue
 {
-    protected $user;
+    public $user;
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
