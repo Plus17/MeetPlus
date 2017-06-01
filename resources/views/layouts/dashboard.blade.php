@@ -17,9 +17,6 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/dashboard/sb-admin.css') }}" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -167,7 +164,9 @@
                     @include('Components.dashboard.errors')
                 </div>
                 <!-- /.row -->
-                @yield('content')
+                <div id="apps">
+                    @yield('content')
+                </div>
                 <!-- /.row -->
 
                 <!-- /.row -->
@@ -187,10 +186,9 @@
     <!-- jQuery -->
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
-
-    <script src="{{ asset('js/plugins/morris/raphael.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/morris/morris.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/morris/morris-data.js') }}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 
 </body>
 
