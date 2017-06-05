@@ -5,6 +5,10 @@
         </li>
 
         <li>
+            <a href="{{ url('/') }}"><i class="fa fa-fw fa-"></i> MeetPlus</a>
+        </li>
+
+        <li>
             <a href="{{ route('profile.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i>Mi Perfil</a>
         </li>
         @if (Auth::check() && (Auth::user()->role == 'editor' or Auth::user()->role == 'admin'))

@@ -28,11 +28,13 @@
 
     @if (! $comments->isEmpty())
         @foreach ($comments as $comment)
-            <div class="">
-                <p>Autor: {{ $comment->user->name }}</p>
-                <p>Comentario: </p>
+            <div class="panel panel-info">
+                <div class="panel-heading">Publicado por {{ $comment->user->name }} en {{ $comment->created_at->format('d-m-Y') }} </div>
+                <div class="panel-body">
                 <p>{{ $comment->comment }}</p>
+                </div>
             </div>
+            
         @endforeach
     @else
         <p>No hay comentarios</p>
