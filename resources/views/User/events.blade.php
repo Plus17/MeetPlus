@@ -9,19 +9,19 @@
             </p>
 
             @if(count($events)>0)
-                @foreach($events as $event)
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Fecha</th>
-                                    <th>Lugar</th>
-                                    <th>Categoria</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Lugar</th>
+                                <th>Categoria</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($events as $event)
                                 <tr>
                                     <td>{{ $event->name }}</td>
                                     <td>{{ $event->start }}</td>
@@ -33,10 +33,10 @@
                                         <a href="{{ route('events.destroy', $event->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @else
                 <p>No hay eventos que mostrar</p>
             @endif
