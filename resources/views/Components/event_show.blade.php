@@ -18,4 +18,8 @@
         <li>End: {{ $end }}</li>
         <li>Place: {{ $place }}</li>
     </ul>
+
+    <div id="map">
+    
+    </div>
 </article>

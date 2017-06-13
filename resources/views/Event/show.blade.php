@@ -1,5 +1,15 @@
 @extends('layouts.layout')
 
+<style>
+    #map {
+        width: 600px;
+        max-width: 100%;
+        height: 300px;
+        max-height: 400px;
+    }
+
+</style>
+
 @section('title', $event->name.' - ')
 
 @section('content')
@@ -20,6 +30,10 @@
         @slot('end', $event->end )
 
         @slot('place', $event->place )
+
+        @slot('latitude', $event->latitude)
+
+        @slot('longitude', $event->longitude)
     @endcomponent
 
 @endsection
@@ -49,3 +63,20 @@
     @endif
 
 @endsection
+
+<script>
+    function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{env('MAPS_API_KEY')}}&callback=initMap">
+    </script>
